@@ -63,19 +63,27 @@ function fruitByTaste(fruits: Fruit[]): FruitByTaste {
 
   const result: FruitByTaste = {};
 
-  const tastes: string[] = [];
-  fruits.forEach((f) => {
-    tastes.push(f.taste);
-  });
-  const uniqueTastes = [...new Set(tastes)];
-  uniqueTastes.forEach((t) => {
-    const fruitByTasteArr: string[] = [];
-    fruits.forEach((f) => {
-      if (f.taste == t) {
-        fruitByTasteArr.push(f.name);
-      }
-    });
-    result[t] = fruitByTasteArr;
+  // const tastes: string[] = [];
+  // fruits.forEach((f) => {
+  //   tastes.push(f.taste);
+  // });
+  // const uniqueTastes = [...new Set(tastes)];
+  // uniqueTastes.forEach((t) => {
+  //   const fruitByTasteArr: string[] = [];
+  //   fruits.forEach((f) => {
+  //     if (f.taste == t) {
+  //       fruitByTasteArr.push(f.name);
+  //     }
+  //   });
+  //   result[t] = fruitByTasteArr;
+  // });
+
+  // alternative faster way
+  fruits.forEach(({ name, taste }) => {
+    if (!result[taste]) {
+      result[taste] = [];
+    }
+    result[taste].push(name);
   });
 
   return result; // replace empty object with what you see is fit
